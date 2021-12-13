@@ -1,4 +1,4 @@
-import {env} from './config'
+import {env, feed} from './config'
 
 const Web3 = require("web3") // for nodejs only
 
@@ -19,14 +19,10 @@ export class FeedTask{
             callback(roundData)
         })
   }
-  constructor (type: string){
-    if (type == env.ETH.TAG){
-      this.type = env.ETH.TAG
-      this.web3addr = env.ETH.WEB_ADDR
-      this.ABIparams = env.ETH.ABI_PARAMS
-      this.addr= env.ETH.ADDR
-    }else{
-      throw new Error('Unknown type of feed')
-    }
+  constructor (f: feed){
+      this.type = f.TYPE
+      this.web3addr = f.WEB_ADDR
+      this.ABIparams = f.ABI_PARAMS
+      this.addr= f.ADDR
   }
 }
